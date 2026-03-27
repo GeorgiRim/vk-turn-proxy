@@ -2,9 +2,7 @@ name: Release
 
 on:
   push:
-    # Trigger on tag pushes. Adjust pattern as needed (e.g. 'v*.*.*')
-    tags:
-      - '**'
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
