@@ -87,18 +87,23 @@ func getVkCreds(link string) (string, string, string, error) {
 	}
 
 	token1 := resp["data"].(map[string]interface{})["access_token"].(string)
+	/*
+			data = fmt.Sprintf("access_token=%s", token1)
 
-	data = fmt.Sprintf("access_token=%s", token1)
-	url = "https://api.vk.ru/method/calls.getAnonymousAccessTokenPayload?v=5.264&client_id=6287487"
+			url = "https://api.vk.ru/method/calls.getAnonymousAccessTokenPayload?v=5.264&client_id=6287487"
 
-	resp, err = doRequest(data, url)
-	if err != nil {
-		return "", "", "", fmt.Errorf("request error:%s", err)
-	}
+			resp, err = doRequest(data, url)
+			if err != nil {
+				return "", "", "", fmt.Errorf("request error:%s", err)
+			}
 
-	token2 := resp["response"].(map[string]interface{})["payload"].(string)
 
-	data = fmt.Sprintf("client_id=6287487&token_type=messages&payload=%s&client_secret=QbYic1K3lEV5kTGiqlq2&version=1&app_id=6287487", token2)
+
+		token2 := resp["response"].(map[string]interface{})["payload"].(string)
+
+	*/
+
+	data = fmt.Sprintf("client_id=6287487&token_type=messages&payload=%s&client_secret=QbYic1K3lEV5kTGiqlq2&version=1&app_id=6287487", token1)
 	url = "https://login.vk.ru/?act=get_anonym_token"
 
 	resp, err = doRequest(data, url)
@@ -109,7 +114,7 @@ func getVkCreds(link string) (string, string, string, error) {
 	token3 := resp["data"].(map[string]interface{})["access_token"].(string)
 
 	data = fmt.Sprintf("vk_join_link=https://vk.com/call/join/%s&name=123&access_token=%s", link, token3)
-	url = "https://api.vk.ru/method/calls.getAnonymousToken?v=5.264"
+	url = "https://api.vk.ru/method/calls.getAnonymousToken?v=5.274"
 
 	resp, err = doRequest(data, url)
 	if err != nil {
